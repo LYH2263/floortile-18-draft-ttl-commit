@@ -18,6 +18,8 @@ body { margin: 0; font-family: system-ui, sans-serif; background: #f4f0ea; }
 .tbl { width: 100%; border-collapse: collapse; background: #fff; }
 .tbl th, .tbl td { border: 1px solid #ddd; padding: 0.5rem; }
 .dirty, .alert { color: #c0392b; }
+.draft-banner { color: #b9770e; }
+.ok-banner { color: #1e8449; }
 .cards { display: flex; flex-wrap: wrap; gap: 1rem; }
 .cards article { background: #fff; padding: 1rem; min-width: 140px; border-left: 4px solid #27ae60; }
 .cards article.dirty { border-color: #c0392b; }

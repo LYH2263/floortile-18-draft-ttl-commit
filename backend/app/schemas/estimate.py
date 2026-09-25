@@ -1,12 +1,21 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class EstimateRequest(BaseModel):
     room_id: int
     tile_id: int
     waste_pct: float | None = None
-    save: bool = False
+
+
+class DraftRequest(BaseModel):
+    room_id: int
+    tile_id: int
+    waste_pct: float | None = None
     note: str = ""
+
+
+class ConfirmRequest(BaseModel):
+    draft_id: int
 
 
 class EstimateResponse(BaseModel):
@@ -20,4 +29,15 @@ class EstimateResponse(BaseModel):
     waste_pct: float
     order_count: int
     layout: dict
-    run_id: int | None = None
+
+
+class DraftResponse(EstimateResponse):
+    draft_id: int
+    expires_at: str
+    status: str
+
+
+class ConfirmResponse(EstimateResponse):
+    run_id: int
+    draft_id: int
+    confirmed_at: str

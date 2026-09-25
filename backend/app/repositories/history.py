@@ -1,36 +1,6 @@
 import json
-from datetime import datetime, timezone
 
 from app.db import connect
-
-
-def insert_run(
-    room_id: int,
-    tile_id: int,
-    waste_pct: float,
-    result: dict,
-    note: str = "",
-) -> int:
-    conn = connect()
-    try:
-        cur = conn.execute(
-            """
-            INSERT INTO calc_runs(room_id, tile_id, waste_pct, result_json, note, created_at)
-            VALUES (?,?,?,?,?,?)
-            """,
-            (
-                room_id,
-                tile_id,
-                waste_pct,
-                json.dumps(result, ensure_ascii=False),
-                note,
-                datetime.now(timezone.utc).isoformat(),
-            ),
-        )
-        conn.commit()
-        return int(cur.lastrowid)
-    finally:
-        conn.close()
 
 
 def list_runs(limit: int = 50):
