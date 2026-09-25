@@ -5,7 +5,17 @@ class EstimateRequest(BaseModel):
     room_id: int
     tile_id: int
     waste_pct: float | None = None
-    save: bool = False
+
+
+class DraftRequest(BaseModel):
+    room_id: int
+    tile_id: int
+    waste_pct: float | None = None
+    note: str = ""
+
+
+class ConfirmRequest(BaseModel):
+    draft_id: int
     note: str = ""
 
 

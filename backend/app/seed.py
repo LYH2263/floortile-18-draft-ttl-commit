@@ -30,6 +30,19 @@ def init_db():
             note TEXT DEFAULT '',
             created_at TEXT NOT NULL
         );
+        CREATE TABLE IF NOT EXISTS estimate_drafts(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            room_id INTEGER NOT NULL,
+            tile_id INTEGER NOT NULL,
+            waste_pct REAL NOT NULL,
+            result_json TEXT NOT NULL,
+            snapshot_json TEXT NOT NULL,
+            note TEXT DEFAULT '',
+            status TEXT NOT NULL DEFAULT 'pending',
+            created_at TEXT NOT NULL,
+            expires_at TEXT NOT NULL,
+            confirmed_at TEXT
+        );
         """
     )
     if conn.execute("SELECT COUNT(*) c FROM rooms").fetchone()["c"] == 0:
